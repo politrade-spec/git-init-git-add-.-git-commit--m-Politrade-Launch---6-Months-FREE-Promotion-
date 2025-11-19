@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politrade - Congressional Stock Trading Intelligence | 6 Months FREE for First 100 Users</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Merriweather:wght@300;400;700&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --presidential-navy: #0A2463;
+            --executive-gold: #D4AF37;
+            --senate-blue: #1e3c72;
+            --congress-red: #8B0000;
+            --independence-green: #2E7D32;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --dark-gray: #343A40;
+            --success: #28A745;
+            --warning: #FFC107;
+            --danger: #DC3545;
+            --info: #17A2B8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Merriweather', serif;
+            background: linear-gradient(135deg, var(--senate-blue) 0%, var(--presidential-navy) 100%);
+            color: var(--white);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Special Promotion Banner */
+        .promo-banner {
+            background: linear-gradient(90deg, var(--executive-gold), var(--warning));
+            color: var(--dark-gray);
+            padding: 15px 0;
+            text-align: center;
+            font-weight: bold;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .promo-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .promo-text {
+            font-size: 1.2em;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .promo-timer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .countdown {
+            display: flex;
+            gap: 5px;
+        }
+
+        .countdown-item {
+            background: var(--white);
+            color: var(--executive-gold);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            min-width: 40px;
+            text-align: center;
+        }
+
+        .claim-button {
+            background: var(--congress-red);
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1em;
+        }
+
+        .claim-button:hover {
+            background: var(--danger);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(220, 53, 69, 0.4);
+        }
+
+        /* Header */
+        .header {
+            background: rgba(10, 36, 99, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px 0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo i {
+            font-size: 2.5em;
+            color: var(--executive-gold);
+        }
+
+        .logo h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--executive-gold), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-item {
+            color: var(--white);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            background: rgba(212, 175, 55, 0.2);
+            color: var(--executive-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--executive-gold), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.4em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* Promotion Progress */
+        .promo-progress {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 40px auto;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .progress-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar-container {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50px;
+            height: 30px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-bar {
+            background: linear-gradient(90deg, var(--executive-gold), var(--warning));
+            height: 100%;
+            width: 23%;
+            transition: width 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--dark-gray);
+        }
+
+        .urgency-message {
+            text-align: center;
+            font-size: 1.2em;
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .urgency-high {
+            background: rgba(220, 53, 69, 0.2);
+            color: var(--danger);
+            animation: pulse 2s infinite;
+        }
+
+        .urgency-medium {
+            background: rgba(255, 193, 7, 0.2);
+            color: var(--warning);
+        }
+
+        .urgency-normal {
+            background: rgba(40, 167, 69, 0.2);
+            color: var(--success);
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        /* Congressional Traders Grid */
+        .traders-section {
+            padding: 60px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            color: var(--executive-gold);
+        }
+
+        .traders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .trader-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trader-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--executive-gold);
+        }
+
+        .trader-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .trader-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid var(--executive-gold);
+            object-fit: cover;
+        }
+
+        .trader-info h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4em;
+            margin-bottom: 5px;
+            color: var(--executive-gold);
+        }
+
+        .trader-party {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+
+        .party-democrat {
+            background: rgba(30, 60, 114, 0.8);
+            color: var(--white);
+        }
+
+        .party-republican {
+            background: rgba(139, 0, 0, 0.8);
+            color: var(--white);
+        }
+
+        .party-independent {
+            background: rgba(46, 125, 50, 0.8);
+            color: var(--white);
+        }
+
+        .portfolio-stats {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            opacity: 0.8;
+        }
+
+        .stat-value {
+            font-weight: bold;
+            color: var(--executive-gold);
+        }
+
+        .top-holdings {
+            margin-top: 20px;
+        }
+
+        .holdings-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: var(--executive-gold);
+        }
+
+        .holding-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .holding-symbol {
+            font-weight: bold;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .holding-value {
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .view-portfolio-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--executive-gold), var(--warning));
+            color: var(--dark-gray);
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .view-portfolio-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Performance Indicators */
+        .performance-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5em;
+        }
+
+        .fire-indicator {
+            color: #FF6B35;
+            animation: flicker 2s infinite;
+        }
+
+        .snowflake-indicator {
+            color: #87CEEB;
+            animation: snowfall 3s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes snowfall {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Success Modal */
+        .promotion-success-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .success-content {
+            background: linear-gradient(135deg, var(--presidential-navy), var(--senate-blue));
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 500px;
+            border: 2px solid var(--executive-gold);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .success-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .success-content h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--executive-gold);
+            margin-bottom: 15px;
+        }
+
+        .success-details {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .success-button {
+            background: linear-gradient(135deg, var(--executive-gold), var(--warning));
+            color: var(--dark-gray);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .success-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .promo-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .hero h2 {
+                font-size: 2.5em;
+            }
+
+            .traders-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .logo h1 {
+                font-size: 1.8em;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(10, 36, 99, 0.95);
+            padding: 40px 20px;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--executive-gold);
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Special Promotion Banner -->
+    <div class="promo-banner">
+        <div class="promo-content">
+            <div class="promo-text">
+                🎉 LIMITED TIME: 6 Months FREE for First 100 Users! (Normally $120)
+            </div>
+            <div class="promo-timer">
+                <div class="countdown">
+                    <div class="countdown-item" id="countdown-days">00</div>
+                    <span>d</span>
+                    <div class="countdown-item" id="countdown-hours">00</div>
+                    <span>h</span>
+                    <div class="countdown-item" id="countdown-minutes">00</div>
+                    <span>m</span>
+                    <div class="countdown-item" id="countdown-seconds">00</div>
+                    <span>s</span>
+                </div>
+            </div>
+            <button class="claim-button" onclick="claimFreeTrial()">
+                Claim FREE Trial Now
+            </button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <h1>Politrade</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="#traders" class="nav-item">Top Traders</a>
+                <a href="#features" class="nav-item">Features</a>
+                <a href="#pricing" class="nav-item">Pricing</a>
+                <a href="#" class="nav-item" onclick="showLogin()">Login</a>
+                <button class="claim-button" onclick="claimFreeTrial()">
+                    Get 6 Months FREE
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h2>Congressional Stock Trading Intelligence</h2>
+        <p>Track every trade by every member of Congress and their families. Get real-time alerts, comprehensive analytics, and insider insights.</p>
+        
+        <!-- Promotion Progress -->
+        <div class="promo-progress">
+            <div class="progress-header">
+                <h3 style="color: var(--executive-gold);">🔥 Early Bird Special: 77 Spots Remaining!</h3>
+                <p>First 100 users get 6 months completely FREE (Save $120)</p>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="promotion-progress" style="width: 23%;">
+                    23/100 Claimed
+                </div>
+            </div>
+            <div class="urgency-message urgency-medium" id="urgency-message">
+                🔥 Filling up fast! Limited spots remaining!
+            </div>
+            <p id="available-slots" style="text-align: center; font-size: 1.1em; margin-top: 10px;">
+                77 of 100 FREE spots remaining
+            </p>
+        </div>
+    </section>
+
+    <!-- Congressional Traders Section -->
+    <section class="traders-section" id="traders">
+        <div class="section-header">
+            <h3>Top Congressional Traders with Family Portfolios</h3>
+            <p>Complete transparency - Track representative AND family trading activity</p>
+        </div>
+        
+        <div class="traders-grid" id="traders-grid">
+            <!-- Trader cards will be dynamically inserted here -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Contact</a>
+            </div>
+            <p>&copy; 2025 Politrade. All rights reserved. | Congressional trading data for educational purposes only.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Politrade Special Promotion System - INLINE VERSION
+        class PromotionSystem {
+            constructor() {
+                this.totalSlots = 100;
+                this.claimedSlots = 23;
+                this.availableSlots = this.totalSlots - this.claimedSlots;
+                this.promotionEndDate = new Date('2025-12-31');
+                this.promotionStartDate = new Date('2025-11-01');
+                
+                this.initializePromotion();
+            }
+
+            initializePromotion() {
+                const saved = localStorage.getItem('politrade_promotion');
+                if (saved) {
+                    const data = JSON.parse(saved);
+                    this.claimedSlots = data.claimedSlots || 0;
+                    this.availableSlots = this.totalSlots - this.claimedSlots;
+                }
+                
+                this.updatePromotionDisplay();
+                this.startCountdownTimer();
+            }
+
+            claimFreeTrial() {
+                if (this.availableSlots <= 0) {
+                    this.showPromotionFull();
+                    return false;
+                }
+
+                const userEmail = localStorage.getItem('politrade_user_email');
+                if (this.hasUserClaimed(userEmail)) {
+                    this.showAlreadyClaimed();
+                    return false;
+                }
+
+                this.claimedSlots++;
+                this.availableSlots = this.totalSlots - this.claimedSlots;
+                
+                const promotionData = {
+                    claimedSlots: this.claimedSlots,
+                    availableSlots: this.availableSlots,
+                    claimedBy: userEmail,
+                    claimedAt: new Date().toISOString(),
+                    trialEndsAt: new Date(Date.now() + 180 * 24 * 60 * 60 * 1000).toISOString()
+                };
+                
+                localStorage.setItem('politrade_promotion', JSON.stringify(promotionData));
+                localStorage.setItem(`promotion_${userEmail}`, JSON.stringify(promotionData));
+                
+                this.updatePromotionDisplay();
+                this.showSuccessAnimation();
+                return true;
+            }
+
+            hasUserClaimed(email) {
+                if (!email) return false;
+                return localStorage.getItem(`promotion_${email}`) !== null;
+            }
+
+            updatePromotionDisplay() {
+                const progressPercent = (this.claimedSlots / this.totalSlots) * 100;
+                
+                const progressBar = document.getElementById('promotion-progress');
+                if (progressBar) {
+                    progressBar.style.width = `${progressPercent}%`;
+                    progressBar.textContent = `${this.claimedSlots}/100 Claimed`;
+                }
+                
+                const slotsText = document.getElementById('available-slots');
+                if (slotsText) {
+                    slotsText.textContent = `${this.availableSlots} of ${this.totalSlots} FREE spots remaining`;
+                }
+                
+                const urgencyMsg = document.getElementById('urgency-message');
+                if (urgencyMsg) {
+                    if (this.availableSlots <= 10) {
+                        urgencyMsg.textContent = '⚠️ Almost gone! Only a few spots left!';
+                        urgencyMsg.className = 'urgency-message urgency-high';
+                    } else if (this.availableSlots <= 25) {
+                        urgencyMsg.textContent = '🔥 Filling up fast! Limited spots remaining!';
+                        urgencyMsg.className = 'urgency-message urgency-medium';
+                    } else {
+                        urgencyMsg.textContent = '✅ Limited time offer - 6 months FREE!';
+                        urgencyMsg.className = 'urgency-message urgency-normal';
+                    }
+                }
+            }
+
+            startCountdownTimer() {
+                const timerElements = {
+                    days: document.getElementById('countdown-days'),
+                    hours: document.getElementById('countdown-hours'),
+                    minutes: document.getElementById('countdown-minutes'),
+                    seconds: document.getElementById('countdown-seconds')
+                };
+
+                const updateTimer = () => {
+                    const now = new Date();
+                    const timeLeft = this.promotionEndDate - now;
+                    
+                    if (timeLeft <= 0) {
+                        Object.values(timerElements).forEach(el => {
+                            if (el) el.textContent = '00';
+                        });
+                        return;
+                    }
+
+                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                    if (timerElements.days) timerElements.days.textContent = String(days).padStart(2, '0');
+                    if (timerElements.hours) timerElements.hours.textContent = String(hours).padStart(2, '0');
+                    if (timerElements.minutes) timerElements.minutes.textContent = String(minutes).padStart(2, '0');
+                    if (timerElements.seconds) timerElements.seconds.textContent = String(seconds).padStart(2, '0');
+                };
+
+                updateTimer();
+                setInterval(updateTimer, 1000);
+            }
+
+            showSuccessAnimation() {
+                const modal = document.createElement('div');
+                modal.className = 'promotion-success-modal';
+                modal.innerHTML = `
+                    <div class="success-content">
+                        <div class="success-icon">🎉</div>
+                        <h2>Congratulations!</h2>
+                        <p>You've secured your 6-month FREE trial!</p>
+                        <div class="success-details">
+                            <p><strong>Your trial expires:</strong> ${new Date(Date.now() + 180 * 24 * 60 * 60 * 1000).toLocaleDateString()}</p>
+                            <p><strong>Savings:</strong> $120.00 (6 months × $20/month)</p>
+                        </div>
+                        <button onclick="this.parentElement.parentElement.remove()" class="success-button">Start Trading Now</button>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                
+                setTimeout(() => {
+                    if (modal.parentElement) {
+                        modal.remove();
+                    }
+                }, 5000);
+            }
+
+            showPromotionFull() {
+                alert('Sorry! All 100 free spots have been claimed. \n\nBut you can still get 20% OFF your first 3 months with code: EARLYBIRD20');
+            }
+
+            showAlreadyClaimed() {
+                alert('You\'ve already claimed your free trial!');
+            }
+        }
+
+        // Sample trader data with actual photos
+        const sampleTraders = [
+            {
+                key: 'nancyPelosi',
+                photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Nancy_Pelosi_2019_official_portrait.jpg/225px-Nancy_Pelosi_2019_official_portrait.jpg',
+                name: 'Nancy Pelosi',
+                party: 'Democrat',
+                state: 'California',
+                district: '11th',
+                totalValue: 38275000,
+                performance: 67.3,
+                topHoldings: [
+                    {symbol: 'NVDA', value: 12500000},
+                    {symbol: 'AAPL', value: 4250000},
+                    {symbol: 'MSFT', value: 5250000},
+                    {symbol: 'GOOGL', value: 1120000},
+                    {symbol: 'AMZN', value: 1560000}
+                ],
+                familyValue: 81965000,
+                isTopPerformer: true
+            },
+            {
+                key: 'joshGottheimer',
+                photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/Josh_Gottheimer_official_portrait.jpg/225px-Josh_Gottheimer_official_portrait.jpg',
+                name: 'Josh Gottheimer',
+                party: 'Democrat',
+                state: 'New Jersey',
+                district: '5th',
+                totalValue: 33850000,
+                performance: 41.7,
+                topHoldings: [
+                    {symbol: 'JPM', value: 11250000},
+                    {symbol: 'BAC', value: 9000000},
+                    {symbol: 'WFC', value: 1200000},
+                    {symbol: 'GS', value: 2800000},
+                    {symbol: 'MS', value: 960000}
+                ],
+                familyValue: 24931000,
+                isTopPerformer: true
+            },
+            {
+                key: 'danCrenshaw',
+                photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Dan_Crenshaw_official_portrait_118th_Congress.jpg/225px-Dan_Crenshaw_official_portrait_118th_Congress.jpg',
+                name: 'Dan Crenshaw',
+                party: 'Republican',
+                state: 'Texas',
+                district: '2nd',
+                totalValue: 9510000,
+                performance: 32.4,
+                topHoldings: [
+                    {symbol: 'XOM', value: 1650000},
+                    {symbol: 'CVX', value: 1500000},
+                    {symbol: 'COP', value: 1080000},
+                    {symbol: 'SLB', value: 640000},
+                    {symbol: 'HAL', value: 540000}
+                ],
+                familyValue: 3785000,
+                isBottomPerformer: false
+            },
+            {
+                key: 'marjorieTaylorGreene',
+                photo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Marjorie_Taylor_Greene_117th_Congressional_portrait.jpg/225px-Marjorie_Taylor_Greene_117th_Congressional_portrait.jpg',
+                name: 'Marjorie Taylor Greene',
+                party: 'Republican',
+                state: 'Georgia',
+                district: '14th',
+                totalValue: 11495000,
+                performance: 38.9,
+                topHoldings: [
+                    {symbol: 'LMT', value: 1750000},
+                    {symbol: 'BA', value: 1200000},
+                    {symbol: 'HON', value: 960000},
+                    {symbol: 'NOC', value: 1050000},
+                    {symbol: 'GD', value: 712500}
+                ],
+                familyValue: 4132150,
+                isBottomPerformer: false
+            }
+        ];
+
+        // Function to format currency
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('en-US', {
+                style: 'currency',
+                currency: 'USD',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        // Function to create trader cards
+        function createTraderCard(trader) {
+            const partyClass = trader.party.toLowerCase() === 'democrat' ? 'party-democrat' : 
+                              trader.party.toLowerCase() === 'republican' ? 'party-republican' : 'party-independent';
+            
+            const performanceIcon = trader.isTopPerformer ? 
+                '<span class="performance-badge fire-indicator">🔥</span>' : 
+                trader.isBottomPerformer ? 
+                '<span class="performance-badge snowflake-indicator">❄️</span>' : '';
+
+            return `
+                <div class="trader-card">
+                    ${performanceIcon}
+                    <div class="trader-header">
+                        <img src="${trader.photo}" alt="${trader.name}" class="trader-photo" 
+                             onerror="this.src='https://picsum.photos/seed/${trader.name}/80/80.jpg'">
+                        <div class="trader-info">
+                            <h4>${trader.name}</h4>
+                            <span class="trader-party ${partyClass}">${trader.party}</span><br>
+                            <small>${trader.state} - District ${trader.district}</small>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-stats">
+                        <div class="stat-row">
+                            <span class="stat-label">Representative Portfolio:</span>
+                            <span class="stat-value">${formatCurrency(trader.totalValue)}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Family Trading Total:</span>
+                            <span class="stat-value">${formatCurrency(trader.familyValue)}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Combined Family Value:</span>
+                            <span class="stat-value">${formatCurrency(trader.totalValue + trader.familyValue)}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">1-Year Performance:</span>
+                            <span class="stat-value" style="color: ${trader.performance > 40 ? '#28A745' : '#FFC107'}">
+                                +${trader.performance}%
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="top-holdings">
+                        <div class="holdings-title">Top 5 Holdings</div>
+                        ${trader.topHoldings.map(holding => `
+                            <div class="holding-item">
+                                <span class="holding-symbol">${holding.symbol}</span>
+                                <span class="holding-value">${formatCurrency(holding.value)}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <button class="view-portfolio-btn" onclick="viewPortfolio('${trader.key}')">
+                        View Complete Portfolio + Family Trading
+                    </button>
+                </div>
+            `;
+        }
+
+        // Function to load traders
+        function loadTraders() {
+            const grid = document.getElementById('traders-grid');
+            grid.innerHTML = sampleTraders.map(trader => createTraderCard(trader)).join('');
+        }
+
+        // Function to view portfolio
+        function viewPortfolio(traderKey) {
+            const modal = document.createElement('div');
+            modal.className = 'promotion-success-modal';
+            modal.innerHTML = `
+                <div class="success-content" style="max-width: 800px; max-height: 80vh; overflow-y: auto;">
+                    <h2 style="color: var(--executive-gold); font-size: 2em;">
+                        ${sampleTraders.find(t => t.key === traderKey).name} - Complete Family Portfolio
+                    </h2>
+                    
+                    <div class="success-details">
+                        <h3 style="color: var(--executive-gold); margin-bottom: 15px;">Family Trading Summary</h3>
+                        <div class="stat-row">
+                            <span class="stat-label">Representative:</span>
+                            <span class="stat-value">${formatCurrency(sampleTraders.find(t => t.key === traderKey).totalValue)}</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="stat-label">Family Members:</span>
+                            <span class="stat-value">${formatCurrency(sampleTraders.find(t => t.key === traderKey).familyValue)}</span>
+                        </div>
+                        <div class="stat-row" style="border-top: 2px solid var(--executive-gold); padding-top: 10px; margin-top: 10px;">
+                            <span class="stat-label" style="font-weight: bold; color: var(--executive-gold);">Total Family Value:</span>
+                            <span class="stat-value" style="font-weight: bold; color: var(--executive-gold); font-size: 1.2em;">
+                                ${formatCurrency(sampleTraders.find(t => t.key === traderKey).totalValue + sampleTraders.find(t => t.key === traderKey).familyValue)}
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="success-details">
+                        <h3 style="color: var(--executive-gold); margin-bottom: 15px;">Top Holdings</h3>
+                        ${sampleTraders.find(t => t.key === traderKey).topHoldings.map((holding, index) => `
+                            <div class="holding-item">
+                                <span class="holding-symbol">${index + 1}. ${holding.symbol}</span>
+                                <span class="holding-value">${formatCurrency(holding.value)}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <button class="success-button" onclick="this.parentElement.parentElement.remove(); claimFreeTrial();">
+                        Get Full Access - Claim 6 Months FREE!
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Initialize page
+        let promotionSystem;
+        document.addEventListener('DOMContentLoaded', () => {
+            promotionSystem = new PromotionSystem();
+            loadTraders();
+        });
+
+        // Global function for claiming promotion
+        function claimFreeTrial() {
+            if (promotionSystem) {
+                return promotionSystem.claimFreeTrial();
+            }
+            return false;
+        }
+
+        function showLogin() {
+            alert('Login functionality coming soon! Claim your 6 months FREE trial first!');
+        }
+    </script>
+</body>
+</html>
